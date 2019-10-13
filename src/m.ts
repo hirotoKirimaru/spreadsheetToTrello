@@ -1,22 +1,63 @@
-function random() {
+var key = "";
+var token = "";
 
+const contextRootURI = "https://api.trello.com/1";
 
-    return Math.random;
+function findBoardId(organazationId: string) {
+    return "";
 }
 
-function hogehoge(){
-    //1. 現在のスプレッドシートを取得
-    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+function findListId(boardId: string) {
+    return "5da2fd3cd32c7332e172e7f4";
+}
+
+function sprintStart() {
+    setup();
+
+    var organizationId = findOrganizationId();
+    var boardId = findBoardId(organizationId);
+    var listId = findListId(boardId);
+
+    // forで回す
+    var cardId = createCard(listId);
+    addEstimateTime(cardId);
+}
+
+function setup() {
+    let spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     // var spreadsheet = SpreadsheetApp.openById('1aRnCVDceRaasfasfar-R4oGFmta0SsafapGxl8AVk_gKVofafa5MO7ts');
-    //2. 現在のシートを取得
-    var sheet = spreadsheet.getSheetByName('設定');
-    //3. 指定するセルの範囲（A1）を取得
-    var range = sheet.getRange("A1");
-    //4. 値を取得する
-    var value = range.getValue();
+    let sheet = spreadsheet.getSheetByName('設定');
+    key = getCellValue(sheet, "B2");
+    token = getCellValue(sheet, "B3");
+}
+
+function getCellValue(sheet, cell) {
+    let range = sheet.getRange(cell);
+    return range.getValue();
+}
 
 
+function findOrganizationId() {
+    return "";
+}
 
 
-    console.log(value)
+function addEstimateTime(cardId: string) {
+
+}
+
+function createCard(listId: string) {
+    const rootUrl = "/cards";
+
+    var url = contextRootURI + rootUrl + "?" + "idList=" + listId + getAuthQuery();
+    var options = {
+        "method": "POST"
+    };
+    let httpResponse = UrlFetchApp.fetch(url, options);
+    return "";
+
+}
+
+function getAuthQuery() {
+    return "&key=" + key + "&token=" + token;
 }
