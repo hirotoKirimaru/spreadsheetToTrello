@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/hirotoKirimaru/spreadsheetToTrello#readme",
   "devDependencies": {
-    "@google/clasp": "^2.3.0",
+    "@google/clasp": "^3.4.1",
     "tslint": "^5.20.0"
   },
   "dependencies": {
